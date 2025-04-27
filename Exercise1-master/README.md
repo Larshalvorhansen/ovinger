@@ -1,55 +1,6 @@
 Exercise 1 : Concurrency Essentials
 ===================================
 
-0: Generate Github personal token
-----------------------------
-
-From August of 2021 you need a token (instead of a password) to use git from the command line.
-Follow these steps:
- - Click the drop-down menu by your profile picture
- - Click "Settings"
- - Click "Developer settings" 
- - Personal access tokens
- - Generate new token
- - In Note, write: "Sanntid", for example
- - Expiration: July of 2023 (after the project ends)
- - Tick off (at least) `repo`, `admin:org_hook` and `delete_repo`
- - Generate token
- 
-**IMPORTANT: copy the token before exiting the page, it is only generated this one time.**
-
-Use the token when prompted for a password when cloning the repo.
-
-1: If you are not on the lab
-----------------------------
-
-This exercise does not require that you use the machines at the real-time lab. However, you will need some way to run code written in C and Go. Here are some alternatives if you are not on the lab:
-
- - C:
-   - Windows: Use [TDM-GCC](https://jmeubank.github.io/tdm-gcc/download/), then use `gcc` from the command line or powershell.
-   - OSX: You will need to download the [Apple Developer Tools](https://developer.apple.com/xcode/), then either use xcode, or `gcc` or `cc` from the command line.
- - Go:
-   - [Download from golang.org](https://golang.org/)
-
-Go has an [interactive tour](http://tour.golang.org/list) you can take. Go's syntax is a bit different, so it may be worth skimming through, or at least using as a quick reference.
-
-2: Version control
-------------------
-
-If you can read this text, you have already taken your first steps in starting to use a version control system.
-
-A version control system is a tool that helps a group of people work on the same files in a systematic and safe manner, allowing multiple users to make changes to the same file and merge the changes later. It is also possible to create diverging branches so that independent areas of development can happen in parallel, and then have these merged safely later. Version control systems also keep track of all previous versions of files, so that you can revert any or all changes made since a given date.
-
-In this course, we will be using a GitHub Classroom, where you will find the assignment texts, project description, and all the code related to the project. You will be given private repositories on the TTK4145 organization, which means that teachers and student assistants will have access to your code by default, but other students will not. You can create issues that reference specific assignment tasks or part of your project code while tagging the student assistants to get their attention.
-
-You will not be able to complete this exercise without a very basic practical understanding of git. Unless you're already familiar with git, it's highly recommended to have a look at the following resources before moving on. Don't let the feeling that you have to google everything discourage you, this is perfectly fine, even expected. And don't forget that the student assistants are there to help you.
-
-- Do the [interactive tutorial](https://try.github.io/)
-- [Feature branch workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow)
-
-Some prefer the command line while some prefer something graphical, both are fine. An overview of graphical git clients can be found [here](https://git-scm.com/downloads/guis/). Some of these have already been installed on the lab computers, but feel free to install whatever you prefer.
-
-
 3: Sharing a variable
 ---------------------
 
