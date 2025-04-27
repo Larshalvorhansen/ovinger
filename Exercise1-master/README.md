@@ -1,32 +1,11 @@
+NOTE TO SELF:
+Gjor denne ferdig en annen dag. Det som gjenstår er det som står nedenfor her. 
+Det som allerede er gjort er det som står i den orginale README men som er fjernet her.
+
+
+
 Exercise 1 : Concurrency Essentials
 ===================================
-
-3: Sharing a variable
----------------------
-
-Implement this in C and Go:
-
-```
-global shared int i = 0
-
-main:
-    spawn thread_1
-    spawn thread_2
-    join all threads (or wait for them to finish)
-    print i
-
-thread_1:
-    do 1_000_000 times:
-        i++
-thread_2:
-    do 1_000_000 times:
-        i--
-```
-            
-There is some starter code in the folder [shared variable](./3%20-%20shared%20variable). Fill out the missing code and run the programs.
-
-Create a new file called `result.md` inside this directory explaining what happens, and why (Hint: the result should not always be zero...). Then add, commit, and push the updated code and the results file, and verify that you can see the updated version on the web.
-
 
 4: Sharing a variable, but properly
 -----------------------------------
@@ -120,72 +99,4 @@ As usual - commit and push your changes to GitHub.
 The file [*questions*](/questions.md) contains a few questions regarding some of the concepts this exercise covers, as well as some broader engineering questions. Modify the file with your answers.
 
 You do not need "perfect" or even complete answers to these questions. Feel free to ask the student assistants (even during the exercise approval process) to discuss any questions you get stuck on - you might find you learn more in less time this way.
-
-Things to think about until next time
-=====================================
-
-This part of the exercise is not for handing in, just for thinking about. Talk to other groups, assistants, or even people who have taken the course in previous years.
-
-7: Thinking about elevators
----------------------------
-
-The main problem of the project is to ensure that no orders are lost. 
- - What sub-problems do you think this consists of?
- - What will you have to make in order to solve these problems?
-
-Maybe try thinking about the happy case of the system:
- - If we push the button one place, how do we make (preferably only) one elevator start moving?
- - Once an elevator arrives, how do we inform the others that it is safe to clear that order?
-
-Maybe try thinking about the [worst-case](http://xkcd.com/748/) behavior of the system:
- - What if the software controlling one of the elevators suddenly crashes?
- - What if it doesn't crash, but hangs?
- - What if a message between machines is lost?
- - What if the network cable is suddenly disconnected? Then re-connected?
- - What if the elevator car never arrives at its destination?
-
-8: Thinking about languages
----------------------------
-
-In the next exercises (the first of which being networking) and the project, you can use any language of your own choice. You are of course free to change your mind at any time - you do not have to do the exercises and the project in the same language (or even different parts of the same exercise, for that matter). But you may want to start doing some research already now.
-
-Here are a few things you should consider:
- - Think about how want to move data around (reading buttons, network, setting motor & lights, state machines, etc). Do you think in a shared-variable way or a message-passing way? Will you be using concurrency at all?
- - How will you split into modules? Functions, objects, threads? Think about what modules you need, and how they need to interact. This is an iterative design process that will take you many tries to get "right".
- - Does the language "look right"? Does the standard library feel comprehensive?
- - While working on new sections on the project you'll want to avoid introducing bugs to the parts that already work properly. Does the language have a framework for making and running tests, or can you easily create one? 
- - Code analysis/debugging/IDE support?
-
-
-Extra
-=====
-
-9: Multithreading in other languages
-------------------------------------
-
-This is an optional exercise. You are not recommended to do this for "completion" or "achievement points". You should only do it if you're interested in learning more about how different languages can protect against data races, or you're considering to use one of these languages in your project. 
-
-*The languages exemplified below are chosen primarily based on their historical popularity among students who have taken this course previously. It should not be interpreted as "is well supported" or "is endorsed".*
-
-### Erlang
-
-Erlang disallows mutability of variables completely, a new state will instead be reached by calling into a different function (or the same function with different arguments). This means it will be impossible to solve the "shared variables but properly" task with lock-based synchronization. Instead you will have to take the "go-channel" approach, and make a number-server. 
-
-These servers are so common in Erlang that they have been made an [OTP design pattern](http://erlang.org/doc/design_principles/gen_server_concepts.html). To not obfuscate the Erlang code, this approach has not been taken in the starter code. Instead a program very similar to the Go solution has been made. If you are planning on doing more work with Erlang/Elixir, you may want to take a closer look at the generic server pattern.
-
-Task: Complete the program and verify that the answer is 0.
-
-### Rust
-
-Rust uses its type system and compile-time checks to make sure that no data races are possible. This is possible by using the [marker traits](https://doc.rust-lang.org/std/marker/) [`Send` and `sync`](https://doc.rust-lang.org/beta/nomicon/send-and-sync.html). A data type is `Send` if you're allowed to send the data to another thread. If a data type is not marked as `Send`, it generates a compile-time error if you try to send it between threads. Similarly for `Sync`, but sync data can be accessed from several threads at the same time, not just sent around between them.
-
-The primitive integer types in rust are not "thread safe", and thus not `Sync`. But there is no reason they can't be sent between threads, so `Send` is implemented. Since Rust doesn't take a stance in which concurrency model to use (as long as you avoid undefined behavior) both the "channel" and "lock" solutions are possible. 
-
-A [`Mutex`](https://doc.rust-lang.org/std/sync/struct.Mutex.html) takes something that is `Send` and makes it `Sync`, while [`mpsc`](https://doc.rust-lang.org/std/sync/mpsc/index.html) allows you to create "channels" for data types that implement `Send`.
-
-The lock based approach has been taken in the starter code, you are of course free to re-write it into the `mpsc` approach if you feel like it.
-
-
-
-
 
