@@ -1,0 +1,2 @@
+Priority.go seems to be going in an infinite loop. I dont know why.. 
+Request.go however works fine.
