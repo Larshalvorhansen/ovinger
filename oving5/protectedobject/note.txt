@@ -1,0 +1,3 @@
+Online kompilert og kjørbar kode. (Klarte ikke å finne en ada compilator for apple silikon mac): 
+https://onecompiler.com/ada/43g4xew32
+
